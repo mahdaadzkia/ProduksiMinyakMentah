@@ -70,7 +70,7 @@ if page == 'Grafik' :
     st.write(fig)
 
 ##########Nomer 1B##########
-    st.subheader(" Grafik Jumlah Produksi Minyak Terbesar pada Suatu Tahun")
+    st.subheader(f"Grafik Jumlah Produksi Minyak Terbesar pada tahun {daftartahun}")
     st.caption("**DAPAT MEMILIH TAHUN**")
     banyak = st.slider("Pilih banyaknya negara: ", min_value  = 1, max_value = 50)
     banyak = int(banyak)
@@ -116,6 +116,8 @@ if page == 'Grafik' :
     fig2.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)', marker_line_width=1.5, opacity=0.6)
     st.write(fig2)
 
+    st.write ("By Mahda Putu Adzkia - 12220078")
+
 else :
     left_col, right_col = st.columns((1,1))
 
@@ -147,10 +149,12 @@ else :
     region = df2[:1].iloc[0]['region']
     sub_region = df2[:1].iloc[0]['sub-region']
 
-    left_col.markdown("**Jumlah produksi terbesar pada suatu tahun **",)
-    left_col.caption("Tahun mengikuti pilihan")
+    left_col.markdown(f"**Jumlah produksi terbesar pada tahun {daftartahun}**",)
     left_col.metric(label = "Nilai", value = jumlah_produksi)
-    left_col.text("{} \n{} \n{} \n{}".format(negara, kode_negara,region,sub_region))
+    left_col.text(f"Negara : {negara}")
+    left_col.text(f"Kode negara : {kode_negara}")
+    left_col.text(f"Region : {region}")
+    left_col.text(f"Sub-region : {sub_region}")
 
 #Mencari data(kode,negara,region,subregion) untuk jumlah produksi terbesar kumulatif
     produksi_kumulatif = dfkumulatif[:1].iloc[0]['kumulatif']
@@ -167,7 +171,10 @@ else :
 
     left_col.markdown("**Jumlah produksi terbesar pada keseluruhan tahun adalah**",)
     left_col.metric(label = "Nilai", value = produksi_kumulatif)
-    left_col.text("{} \n{} \n{} \n{}".format(negara, kode_negara,region,sub_region))
+    left_col.text(f"Negara : {negara}")
+    left_col.text(f"Kode negara : {kode_negara}")
+    left_col.text(f"Region : {region}")
+    left_col.text(f"Sub-region : {sub_region}")
     
 
 # Nomer 1D Bagian 2
@@ -181,10 +188,12 @@ else :
     region = dfterkecil[:1].iloc[0]['region']
     sub_region = dfterkecil[:1].iloc[0]['sub-region']
 
-    right_col.markdown("**Jumlah produksi terkecil pada suatu tahun adalah**")
-    right_col.caption("Tahun mengikuti pilihan")
+    right_col.markdown(f"**Jumlah produksi terkecil pada tahun {daftartahun}**")
     right_col.metric(label = "Nilai", value = jumlah_produksi)
-    right_col.text("{} \n{} \n{} \n{}".format(negara, kode_negara,region,sub_region))
+    right_col.text(f"Negara : {negara}")
+    right_col.text(f"Kode negara : {kode_negara}")
+    right_col.text(f"Region : {region}")
+    right_col.text(f"Sub-region : {sub_region}")
     
 
 # Membuat data frame untuk jumlah produksi terkecil (tidak sama dengan nol) kumulatif
@@ -205,8 +214,11 @@ else :
 
     right_col.markdown("**Jumlah produksi terkecil pada keseluruhan tahun adalah**",)
     right_col.metric(label = "Nilai", value = produksi_kumulatif )
-    right_col.text("{} \n{} \n{} \n{}".format(negara, kode_negara,region,sub_region))
-
+    right_col.text(f"Negara : {negara}")
+    right_col.text(f"Kode negara : {kode_negara}")
+    right_col.text(f"Region : {region}")
+    right_col.text(f"Sub-region : {sub_region}")
+    
 #Nomor 1D Bagian 3
     dfnol = df2[df2['produksi'] == 0]
     dfnol1 = dfnol.reindex(columns= ['negara','kode_negara','country-code','region','sub-region','produksi','tahun'])
@@ -235,9 +247,10 @@ else :
     dfkumulatifnol1 = dfkumulatifnol.reindex(columns= ['negara','kode negara','kode negara angka','region','sub-region','kumulatif'])
     dfkumulatifnol2 = dfkumulatifnol1.drop(['kumulatif'], axis=1)
 
-    st.subheader("Daftar Negara dengan Jumlah Produksi Nol pada Suatu Tahun")
-    st.caption("Tahun mengikuti pilihan")
+    st.subheader(f"Daftar Negara dengan Jumlah Produksi Nol pada tahun {daftartahun}")
     st.dataframe(dfnol2)
 
     st.subheader("Daftar Negara dengan Jumlah Produksi Nol pada Keseluruhan Tahun")
     st.dataframe(dfkumulatifnol2)
+
+    st.write ("By Mahda Putu Adzkia - 12220078")
